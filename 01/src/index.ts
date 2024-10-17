@@ -4,6 +4,12 @@ let x: number = 10;
 x = 12;
 
 console.log(x);
+x = 34;
+console.log(x);
+
+let nome: string = 'Souza'
+
+let trabalha: boolean = false;
 
 //inferencia x annotation
 let y = 12; // inferencia
@@ -200,3 +206,66 @@ zeca.showUserName();
 zeca.showUserRole(false);
 
 //interfaces em classes
+interface IVehicle {
+    brand: string
+    showBrand(): void
+}
+
+class Car implements IVehicle {
+    brand
+    wheels
+
+    constructor(brand: string, wheels: number) {
+        this.brand = brand
+        this.wheels = wheels
+    }
+
+    showBrand(): void {
+        console.log(`A marca do carro é: ${this.brand} e possui ${this.wheels} rodas`)
+    }
+}
+
+const fusca = new Car("VW", 4);
+fusca.showBrand();
+
+//herança
+class SuperCar extends Car {
+    engine
+
+    constructor(brand: string, wheels: number, engine: number) {
+        super(brand, wheels)
+        this.engine = engine
+    }
+}
+
+const a4 = new SuperCar("Audi", 4, 2.0);
+
+console.log(a4);
+
+a4.showBrand();
+
+// decorators
+//Para que funcione vá no arquivo "tsconfig.json", e descomente a linha "experimentalDecorators": true,"
+
+// Constructor decorator
+function BaseParameters() {
+    return function <T extends {new(...args: any[]): {}}>(constructor: T) {
+        return class extends constructor {
+            id = Math.random()
+            createAt = new Date();
+        };
+    };
+}
+
+@BaseParameters()
+class Person {
+    name
+
+    constructor(name: string) {
+        this.name = name;
+    }
+}
+
+const sam = new Person("Sam");
+
+console.log(sam);

@@ -1,0 +1,5 @@
+Download globall TypeScript
+npm i -g typescript
+
+Arquivo de configuração
+tsc --init
